@@ -1,0 +1,39 @@
+<!-- templates/add_student.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <style>
+        body{
+            background-image: url("../static/background_2.jpg");
+            font-size: large;
+            font-size: 20px;
+        }
+        #name_s,#roll_s,#course_s{
+            padding: 4px;
+            font-size:20px;
+        }
+        .container{
+            margin-left: 75px;
+
+        }
+
+    </style>
+</head>
+<body>
+    
+    <form  method="POST" class="container">
+        <h2>Add Student</h2>
+        Name: <input type="text" name="name" id="name_s"><br><br>
+        Roll: <input type="text" name="roll" id="roll_s"><br><br>
+        Course: <input type="text" name="course" id="course_s"><br><br>
+        <button type="submit" style="padding: 8px;cursor: pointer; border-radius: 5px; font-size: 16px; border: none;"
+        onmouseover="this.style.backgroundColor='#45a049'; this.style.transform='scale(1.05)';"
+        onmouseout="this.style.backgroundColor=''; this.style.transform='';">Add Student</button>
+        <br>
+        <br>
+        <a href="{{ url_for('dashboard') }}"  >Back to Dashboard</a>
+    </form>
+   
+</body>
+</html>

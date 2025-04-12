@@ -1,0 +1,87 @@
+<!-- templates/base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}{% endblock %}</title>
+  <!-- <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon.ico">
+  <link rel="manifest" href="favicon.ico">
+  
+  this is for favicon but not working
+  -->
+  <link rel="shortcut icon" href="../static/stduent_icon.png" type="image/x-icon">
+  
+
+  <!-- Inside <head> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"> -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+      body {
+          padding-top: 70px;
+          background-image: url("../static/background_2.jpg") !important;
+      }
+      footer {
+          background-color: #f8f9fa;
+          padding: 1rem;
+          position: fixed;
+          bottom: 0;
+          width: 100%;
+      }
+      
+      
+  </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <div class="container">
+      <a class="navbar-brand" href="{{ url_for('dashboard') }}" class="sms">Student Management System</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+          <ul class="navbar-nav">
+              {% if session.get('username') %}
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('add_student') }}">Add Student</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+              {% else %}
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="{{ url_for('register') }}">Register</a></li>
+              {% endif %}
+          </ul>
+      </div>
+  </div>
+</nav>
+
+<!-- Main Content -->
+<div class="container">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+          {% for category, message in messages %}
+              <div class="alert alert-{{ category }} alert-dismissible fade show mt-3" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>
+          {% endfor %}
+      {% endif %}
+  {% endwith %}
+  
+  {% block content %}{% endblock %}
+</div>
+
+<!-- Footer -->
+<footer class="text-center">
+  <div class="container">
+      <span class="text-muted">© {{ now().year }} Student Management System</span>
+  </div>
+</footer>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
