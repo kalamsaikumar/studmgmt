@@ -3,3 +3,4 @@ pymongo
 dnspython
 flask-bcrypt
 flask-login
+gunicorn
